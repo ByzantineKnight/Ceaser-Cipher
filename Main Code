@@ -1,0 +1,70 @@
+using System;
+
+namespace CaesarCipher
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      char[] alphabet = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+      
+
+      // Requesting inputs
+      Console.WriteLine("Hi, welcome to the Not-So-Turing Machine, would you like to Encrypt or Decrypt a text?");
+      string choice = Console.ReadLine();
+      choice.ToLower();
+      if (choice == "encrypt")
+      {
+        Console.WriteLine("Please insert the text to be encrypted");
+        string notEncrypted = Console.ReadLine();
+        notEncrypted = notEncrypted.ToLower();
+        // Array shaenenigans
+        char[] notEncryptedArray = notEncrypted.ToCharArray();
+        char[] encryptedArray = new char[notEncryptedArray.Length];
+      
+        // Encryption Proccess
+        for (int i = 0; i < notEncryptedArray.Length; i++)
+        {
+          char letter = notEncryptedArray[i];
+          int index = Array.IndexOf(alphabet, letter);
+          int newIndex = (index+3) % alphabet.Length;
+          char newLetter = alphabet[newIndex];
+          encryptedArray[i] = newLetter;
+        }
+
+        //Printing answer
+        string encryptedMessage = String.Join("", encryptedArray);
+        Console.WriteLine(encryptedMessage);
+      }
+
+      else if(choice == "decrypt")
+      {
+        Console.WriteLine("Please insert text to be decrypted");
+        string notDecrypted = Console.ReadLine();
+        notDecrypted = notDecrypted.ToLower();
+        // Array shaenenigans
+        char[] notDecryptedArray = notDecrypted.ToCharArray();
+        char[] decryptedArray = new char[notDecryptedArray.Length];
+      
+        // Decryption Proccess
+        for (int i = 0; i < notDecryptedArray.Length; i++)
+        {
+          char letter2 = notDecryptedArray[i];
+          int index2 = Array.IndexOf(alphabet, letter2);
+          int newIndex2 = (index2+23) % alphabet.Length;
+          char newLetter2 = alphabet[newIndex2];
+          decryptedArray[i] = newLetter2;
+        }
+
+        //Printing answer
+        string decryptedMessage = String.Join("", decryptedArray);
+        Console.WriteLine(decryptedMessage);
+      }
+
+      else 
+      {
+        Console.WriteLine("Sorry, this does not seem to be a function I'm familiar with");
+      }
+    }
+  }
+}
